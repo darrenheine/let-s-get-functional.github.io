@@ -1,9 +1,9 @@
 // #!/usr/bin/env node
 
-'use strict';
+"use strict";
 
-var customers = require('./data/customers.json');
-var _ = require('underbar');
+var customers = require("./data/customers.json");
+var _ = require("underbar");
 
 /**
  * 1. Import your lodown module using the require() method,
@@ -21,15 +21,84 @@ var _ = require('underbar');
  *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER with your actual github folder name that is in your workspace.
  */
 
-var maleCount = function(array) {
-
+/*
+### 1: `maleCount`
+ - **Objective**: Find the number of male customers
+ - **Input**: `Array`
+ - **Output**: `Number`
+ - **Constraints**: use `filter`
+*/
+var maleCount = function (array) {
+  let males = _.filter(array, (customer) => customer.gender === "male");
+  return males.length;
 };
 
-var femaleCount;
+/*
+### 2: `femaleCount`
+ - **Objective**: Find the number of female customers
+ - **Input**: `Array`
+ - **Output**: `Number`
+ - **Constraints**: use `reduce`
+*/
+var femaleCount = function (array) {
+  let females = _.reduce(
+    array,
+    (acc, current) => {
+      if (current.gender === "female") {
+        return acc + 1;
+      } else {
+        return acc;
+      }
+    },
+    0
+  );
+  return females;
+};
 
-var oldestCustomer;
+/*
+### 3: `oldestCustomer`
+ - **Objective**: Find the oldest customer's name
+ - **Input**: `Array`
+ - **Output**: `String`
+ - **Constraints**:
+*/
 
-var youngestCustomer;
+var oldestCustomer = function (array) {
+  var oldest = _.reduce(array, function (acc, current) {
+    if (current.age > acc.age) {
+      return current;
+    } else {
+      return acc;
+    }
+  });
+  return oldest.name;
+};
+
+/*
+### 4: `youngestCustomer`
+ - **Objective**: Find the youngest customer's name
+ - **Input**: `Array`
+ - **Output**: `String`
+ - **Constraints**:
+*/
+
+var youngestCustomer = function (array) {
+  var youngest = _.reduce(array, function (acc, current) {
+    if (current.age < acc.age) {
+      return current;
+    } else {
+      return acc;
+    }
+  });
+  return youngest.name;
+};
+/*
+### 5: `averageBalance`
+ - **Objective**: Find the average balance of all customers
+ - **Input**: `Array`
+ - **Output**: `Number`
+ - **Constraints**:
+*/
 
 var averageBalance;
 
