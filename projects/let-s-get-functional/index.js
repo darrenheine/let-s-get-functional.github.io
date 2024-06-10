@@ -100,7 +100,7 @@ var youngestCustomer = function (array) {
  - **Constraints**:
 */
 
-var averageBalance;
+var averageBalance = function (array) {};
 
 var firstLetterCount;
 
