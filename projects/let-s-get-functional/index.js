@@ -98,6 +98,7 @@ var youngestCustomer = function (array) {
  - **Input**: `Array`
  - **Output**: `Number`
  - **Constraints**:
+
 */
 
 var averageBalance = function (array) {};
@@ -110,7 +111,21 @@ var friendsCount;
 
 var topThreeTags;
 
-var genderCount;
+var genderCount = function (array) {
+  let ouput = _.reduce(
+    array,
+    (acc, current) => {
+      if (acc[current.gender]) {
+        acc[current.gender]++;
+      } else {
+        acc[current.gender] = 1;
+      }
+      return acc;
+    },
+    {}
+  );
+  return ouput;
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
