@@ -139,9 +139,49 @@ var friendFirstLetterCount = function (array, customerName, letter) {
   return count;
 };
 
-var friendsCount;
+var friendsCount = function (array, customerName) {
+  // Initialize an array to hold the names of customers that are friends with the given customer
+  let result = [];
+  // Iterate over each customer in the array
+  array.forEach((customer) => {
+    // Iterate over each friend of the current customer
+    customer.friends.forEach((friend) => {
+      // Check if the friend's name matches the given customer's name
+      if (friend.name === customerName) {
+        // If a match is found, add the current customer's name to the result array
+        result.push(customer.name);
+      }
+    });
+  });
+  // Return the result array
+  return result;
+};
 
-var topThreeTags;
+var topThreeTags = function (array) {
+  // Initialize an object to hold the count of each tag
+  let tagCount = {};
+  // Iterate over each customer in the array
+  array.forEach((customer) => {
+    // Iterate over each tag of the current customer
+    customer.tags.forEach((tag) => {
+      // If the tag is already in the tagCount object, increment its count
+      if (tagCount[tag]) {
+        tagCount[tag]++;
+      } else {
+        // If the tag is not in the tagCount object, initialize its count to 1
+        tagCount[tag] = 1;
+      }
+    });
+  });
+  // Convert the tagCount object to an array of [tag, count] pairs
+  let tagArray = Object.entries(tagCount);
+  // Sort the array by count in descending order
+  tagArray.sort((a, b) => b[1] - a[1]);
+  // Extract the top three tags
+  let topTags = tagArray.slice(0, 3).map((tag) => tag[0]);
+  // Return the top three tags
+  return topTags;
+};
 
 var genderCount = function (array) {
   // Use reduce method to iterate over the array and count each gender
